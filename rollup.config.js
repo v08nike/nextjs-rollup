@@ -1,7 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
-import { uglify } from 'rollup-plugin-uglify';
+import terser from '@rollup/plugin-terser';
 import path from "path";
 
 import pkg from "./package.json";
@@ -16,7 +16,6 @@ export default {
       format: "cjs",
       exports: "named",
       file: 'dist/bundle.min.js',
-      sourcemap: 'inline'
     }
   ],
   plugins: [
@@ -29,7 +28,7 @@ export default {
     }),
     resolve({ extensions }),
     commonjs({ extensions }),
-    uglify()
+    terser()
   ],
   external: [
     "next/app",
