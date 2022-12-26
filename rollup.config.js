@@ -28,5 +28,10 @@ export default {
     }),
     resolve({ extensions }),
     commonjs({ extensions }),
-  ]
+  ],
+  external: [
+    "next/app",
+    "effector-react/ssr",
+    ...Object.keys(Object.assign({}, pkg.dependencies, pkg.peerDependencies)),
+  ],
 };
