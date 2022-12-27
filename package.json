@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build-next": "next build",
     "start-next": "next start",
-    "build-rollup": "rollup -c"
+    "build-rollup": "rollup -c --bundleConfigAsCjs"
   },
   "dependencies": {
     "effector": "^22.4.1",
