@@ -1,6 +1,7 @@
 import resolve from "@rollup/plugin-node-resolve";
 import commonjs from "@rollup/plugin-commonjs";
 import babel from "@rollup/plugin-babel";
+import terser from '@rollup/plugin-terser';
 import path from "path";
 
 import pkg from "./package.json";
@@ -12,11 +13,16 @@ export default {
   input: "pages/index.js",
   output: [
     {
-      format: "es",
-      exports: "named",
-      file: 'dist/bundle.js',
-      sourcemap: 'inline'
-    }
+      file: 'dist/index.js',
+      format: 'cjs',
+      exports: 'named',
+      sourcemap: false,
+    },
+    // {
+    //     file: 'dist/index.es.js',
+    //     format: 'es',
+    //     exports: 'named',
+    // },
   ],
   plugins: [
     babel({
@@ -28,5 +34,11 @@ export default {
     }),
     resolve({ extensions }),
     commonjs({ extensions }),
-  ]
+    terser()
+  ],
+  external: [
+    "next/app",
+    "effector-react/ssr",
+    ...Object.keys(Object.assign({}, pkg.dependencies, pkg.peerDependencies)),
+  ],
 };
