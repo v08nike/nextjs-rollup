@@ -13,10 +13,16 @@ export default {
   input: "pages/index.js",
   output: [
     {
-      format: "cjs",
-      exports: "named",
-      file: 'dist/bundle.min.js',
-    }
+      file: 'dist/index.js',
+      format: 'cjs',
+      exports: 'named',
+      sourcemap: false,
+    },
+    // {
+    //     file: 'dist/index.es.js',
+    //     format: 'es',
+    //     exports: 'named',
+    // },
   ],
   plugins: [
     babel({
